@@ -15,8 +15,9 @@ int total_misses;
 int hits[ MAX_THREADS ];
 int sample_points_per_thread;
 int num_threads;
+double total;
 
-clock_t start, end, total;
+clock_t start, end;
 
 
 int main( int argc, char *argv[] )
@@ -31,26 +32,26 @@ int main( int argc, char *argv[] )
   /* initialize local variables */
   retval = 0;
 
-  start = clock();
-  printf("Start time: %lf\n", start);
+  
 
   pthread_attr_init( &attr );
   pthread_attr_setscope( &attr, PTHREAD_SCOPE_SYSTEM );
 
   /* parse command line arguments into sample points and number of threads */
   /* there is no error checking here!!!!! */
-  /*sample_points = atoi(argv[1]);
-  num_threads = atoi(argv[2]);*/
+  sample_points = atoi(argv[1]);
+  num_threads = atoi(argv[2]);
 
   /* uncomment this block if you want interactive input!!!! */
   /* if so...comment out the two statements above */
     
-  printf( "Enter number of sample points: " );
+  /*printf( "Enter number of sample points: " );
   scanf( "%d", &sample_points );
   printf( "Enter number of threads: " );
-  scanf( "%d%", &num_threads );
+  scanf( "%d%", &num_threads );*/
   
-
+  start = clock();
+  
   total_hits = 0;
   sample_points_per_thread = sample_points / num_threads;
 
@@ -71,11 +72,9 @@ int main( int argc, char *argv[] )
   
    computed_pi = 4.0 * (double) total_hits / ((double) (sample_points));
 
+   end = clock();
 
    printf( "Computed PI = %lf\n", computed_pi );
-
-   end = clock();
-   printf("End time: %lf\n", end);
 
    total = (double)(end - start) / CLOCKS_PER_SEC;
 
