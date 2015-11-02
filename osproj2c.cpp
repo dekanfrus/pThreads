@@ -2,6 +2,7 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <vector>
+#include <sstream>
 
 
 using namespace std;
@@ -10,52 +11,66 @@ vector<string>phrase;
 
 void *con(void*)
 {
+	int end = (int)phrase.size();
 
-	for (int it = 0; it < phrase.size(); ++it)
+
+	for (int i = 0; i != end; i++)
 	{
-		if (phrase.front().at(it) != 'A' || phrase.front().at(it) != 'a' || phrase.front().at(it) != 'E' || phrase.front().at(it) != 'e' || phrase.front().at(it) != 'I' || phrase.front().at(it) != 'i' || phrase.front().at(it) != 'O' || phrase.front().at(it) != 'o' || phrase.front().at(it) != 'U' || phrase.front().at(it) != 'u')
-		{
-			cout << "Con: " << phrase[it] << endl;
-		}
-		else
-		{
-			sched_yield();
-		}
-	}
+		if (phrase[i] != "A") cout << "Con: " << phrase[i] << endl;
+		else if (phrase[i] != "a") cout << "Con: " << phrase[i] << endl;
+		else if (phrase[i] != "E") cout << "Con: " << phrase[i] << endl;
+		else if (phrase[i] != "e") cout << "Con: " << phrase[i] << endl;
+		else if (phrase[i] != "I") cout << "Con: " << phrase[i] << endl;
+		else if (phrase[i] != "i") cout << "Con: " << phrase[i] << endl;
+		else if (phrase[i] != "O") cout << "Con: " << phrase[i] << endl;
+		else if (phrase[i] != "o") cout << "Con: " << phrase[i] << endl;
+		else if (phrase[i] != "U") cout << "Con: " << phrase[i] << endl;
+		else if (phrase[i] != "u") cout << "Con: " << phrase[i] << endl;
+		else sched_yield();
 
+	}
 	pthread_exit(NULL);
 }
 
 void *vow(void*)
 {
 	sched_yield();
+	int end = (int)phrase.size();
 
-	for (int i = 0; i < phrase.size(); i++)
-	{
-		if (phrase.front().at(i) == 'A' || phrase.front().at(i) == 'a' || phrase.front().at(i) == 'E' || phrase.front().at(i) == 'e' || phrase.front().at(i) == 'I' || phrase.front().at(i) == 'i' || phrase.front().at(i) == 'O' || phrase.front().at(i) == 'o' || phrase.front().at(i) == 'U' || phrase.front().at(i) == 'u')
-		{
-			cout << "Vow: " << phrase[i] << endl;
-		}
-		else
-		{
-			sched_yield();
-		}
+
+	for (int i = 0; i != end; i++)
+	{			
+		if (phrase[i] == "A") cout << "Vow: " << phrase[i] << endl;
+		else if (phrase[i] == "a") cout << "Vow: " << phrase[i] << endl;
+		else if (phrase[i] == "E") cout << "Vow: " << phrase[i] << endl;
+		else if (phrase[i] == "e") cout << "Vow: " << phrase[i] << endl;
+		else if (phrase[i] == "I") cout << "Vow: " << phrase[i] << endl;
+		else if (phrase[i] == "i") cout << "Vow: " << phrase[i] << endl;
+		else if (phrase[i] == "O") cout << "Vow: " << phrase[i] << endl;
+		else if (phrase[i] == "o") cout << "Vow: " << phrase[i] << endl;
+		else if (phrase[i] == "U") cout << "Vow: " << phrase[i] << endl;
+		else if (phrase[i] == "u") cout << "Vow: " << phrase[i] << endl;
+		else sched_yield();
 	}
-
 	pthread_exit(NULL);
 }
 
 
-int main(int argc, char *argv[]) {
+int main() {
 
 	pthread_t tid1, tid2;
-	
-	vector<string>input(argv, argv + argc);
-	phrase = input;
+	string input;
+	string buffer;
+
+	cout << "Please enter a phrase: ";
+	getline(cin, input);
+		
+	stringstream stream(input);
+
+	while (stream >> buffer)
+		phrase.push_back(buffer);
 
 	phrase.erase(phrase.begin());
-
-	int size = phrase.size();
 
 	pthread_create(&tid1, NULL, &con, NULL);
 	pthread_create(&tid2, NULL, &vow, NULL);
