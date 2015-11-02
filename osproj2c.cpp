@@ -16,16 +16,8 @@ void *con(void*)
 
 	for (int i = 0; i != end; i++)
 	{
-		if (phrase[i] != "A") cout << "Con: " << phrase[i] << endl;
-		else if (phrase[i] != "a") cout << "Con: " << phrase[i] << endl;
-		else if (phrase[i] != "E") cout << "Con: " << phrase[i] << endl;
-		else if (phrase[i] != "e") cout << "Con: " << phrase[i] << endl;
-		else if (phrase[i] != "I") cout << "Con: " << phrase[i] << endl;
-		else if (phrase[i] != "i") cout << "Con: " << phrase[i] << endl;
-		else if (phrase[i] != "O") cout << "Con: " << phrase[i] << endl;
-		else if (phrase[i] != "o") cout << "Con: " << phrase[i] << endl;
-		else if (phrase[i] != "U") cout << "Con: " << phrase[i] << endl;
-		else if (phrase[i] != "u") cout << "Con: " << phrase[i] << endl;
+		if (phrase[i] != "A" || phrase[i] != "a" || phrase[i] != "E" || phrase[i] != "e" || phrase[i] != "I" || phrase[i] != "O" || phrase[i] != "o" || phrase[i] != "U" || phrase[i] != "u") 
+			cout << "Con: " << phrase[i] << endl;
 		else sched_yield();
 
 	}
@@ -40,16 +32,8 @@ void *vow(void*)
 
 	for (int i = 0; i != end; i++)
 	{			
-		if (phrase[i] == "A") cout << "Vow: " << phrase[i] << endl;
-		else if (phrase[i] == "a") cout << "Vow: " << phrase[i] << endl;
-		else if (phrase[i] == "E") cout << "Vow: " << phrase[i] << endl;
-		else if (phrase[i] == "e") cout << "Vow: " << phrase[i] << endl;
-		else if (phrase[i] == "I") cout << "Vow: " << phrase[i] << endl;
-		else if (phrase[i] == "i") cout << "Vow: " << phrase[i] << endl;
-		else if (phrase[i] == "O") cout << "Vow: " << phrase[i] << endl;
-		else if (phrase[i] == "o") cout << "Vow: " << phrase[i] << endl;
-		else if (phrase[i] == "U") cout << "Vow: " << phrase[i] << endl;
-		else if (phrase[i] == "u") cout << "Vow: " << phrase[i] << endl;
+		if (phrase[i] == "A" || phrase[i] == "a" || phrase[i] == "E" || phrase[i] == "e" || phrase[i] == "I" || phrase[i] == "i" || phrase[i] == "O" || phrase[i] == "o" || phrase[i] == "U" || phrase[i] == "u")
+			cout << "Vow: " << phrase[i] << endl;
 		else sched_yield();
 	}
 	pthread_exit(NULL);
@@ -69,8 +53,6 @@ int main() {
 
 	while (stream >> buffer)
 		phrase.push_back(buffer);
-
-	phrase.erase(phrase.begin());
 
 	pthread_create(&tid1, NULL, &con, NULL);
 	pthread_create(&tid2, NULL, &vow, NULL);
