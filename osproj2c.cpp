@@ -43,6 +43,7 @@ vector<string>phrase;
 //*******************************************************************
 void *con(void*)
 {
+	sched_yield();
 	// Stores the length of the phrase vector as an integer.
 	int end = (int)phrase.size();
 
@@ -134,8 +135,8 @@ int main() {
 	while (stream >> buffer)
 		phrase.push_back(buffer);
 
-	pthread_create(&tid1, NULL, &con, NULL);
 	pthread_create(&tid2, NULL, &vow, NULL);
+	pthread_create(&tid1, NULL, &con, NULL);
 
 	pthread_join(tid1, NULL);
 	pthread_join(tid2, NULL);
