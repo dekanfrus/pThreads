@@ -98,6 +98,9 @@ int main(int argc, char *argv[]) {
 	pthread_t tid;
 	double total = 0;
 
+	// Store arguments into the number variable
+	num = atoi(argv[1]);
+
 	// Create a new thread and run the fib function
 	pthread_create(&tid, NULL, &fib, NULL);
 
