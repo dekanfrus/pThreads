@@ -16,10 +16,9 @@ void *con(void*)
 
 	for (int i = 0; i != end; i++)
 	{
-		if (phrase[i] != "A" || phrase[i] != "a" || phrase[i] != "E" || phrase[i] != "e" || phrase[i] != "I" || phrase[i] != "O" || phrase[i] != "o" || phrase[i] != "U" || phrase[i] != "u") 
+		if (phrase[i][0] != 'A' && phrase[i][0] != 'a' && phrase[i][0] != 'E' && phrase[i][0] != 'e' && phrase[i][0] != 'I' && phrase[i][0] != 'i' && phrase[i][0] != 'O' && phrase[i][0] != 'o' && phrase[i][0] != 'U' && phrase[i][0] != 'u')
 			cout << "Con: " << phrase[i] << endl;
 		else sched_yield();
-
 	}
 	pthread_exit(NULL);
 }
@@ -27,12 +26,12 @@ void *con(void*)
 void *vow(void*)
 {
 	sched_yield();
+
 	int end = (int)phrase.size();
 
-
 	for (int i = 0; i != end; i++)
-	{			
-		if (phrase[i] == "A" || phrase[i] == "a" || phrase[i] == "E" || phrase[i] == "e" || phrase[i] == "I" || phrase[i] == "i" || phrase[i] == "O" || phrase[i] == "o" || phrase[i] == "U" || phrase[i] == "u")
+	{
+		if (phrase[i][0] == 'A' || phrase[i][0] == 'a' || phrase[i][0] == 'E' || phrase[i][0] == 'e' || phrase[i][0] == 'I' || phrase[i][0] == 'i' || phrase[i][0] == 'O' || phrase[i][0] == 'o' || phrase[i][0] == 'U' || phrase[i][0] == 'u')
 			cout << "Vow: " << phrase[i] << endl;
 		else sched_yield();
 	}
