@@ -1,0 +1,14 @@
+Makefile
+This file will compile the three programs in the directory.  It will also clean up those files if necessary.
+
+osproj2a.c
+This program reads two numbers as arguments.  The first number is the value in which to compute PI and the second one is the number of threads to create and use.  The specified number of threads are created and the computation is split up between all threads.  Once they are all completed, the main function will display the value of PI as well as the total execution time the program required to do the calculations.
+
+osproj2b.cpp
+This program reads one number as an argument.  This number is used in calculating the Fibonacci series.  The main function will create a new thread for the calculations.  Once it is finished calculating, it will display the Fibonacci series and the value.
+
+osproj2c.cpp
+This program will prompt the user to enter a phrase.  That phrase is then parsed and each word is displayed indicating whether or not it starts with a vowel or consonant.  The program utilizes two threads, one for calculating vowels and the other for calculating consonants.  Each thread will wait for the other in the event the current word is not theirs to display.
+
+Threads.xlsx
+This spreadsheet contains sample data from the PI computation program.  There is one sample where I used a specific number to calculate PI and changed the thread counts.  The execution time was then recorded and is displayed in a line graph.  The next two samples I used a set number of threads to calculate various numbers of PI.  The execution time was recorded.  All three samples have their own graphs.
